@@ -46,14 +46,8 @@ class Game
   end
 
   def get_best_move(board, next_player, depth = 0, best_score = {})
-    available_spaces = []
     best_move = nil
-    board.each do |s|
-      if s != "X" && s != "O"
-        available_spaces << s
-      end
-    end
-    available_spaces.each do |as|
+    @board.available_spaces(board).each do |as|
       board[as.to_i] = @com
       if @board.win?(board)
         best_move = as.to_i
@@ -73,8 +67,7 @@ class Game
     if best_move
       return best_move
     else
-      n = rand(0..available_spaces.count)
-      return available_spaces[n].to_i
+      return @board.random_available_space(board)
     end
   end
 end
