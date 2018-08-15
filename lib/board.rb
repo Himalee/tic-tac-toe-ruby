@@ -7,6 +7,10 @@ class Board
     @dimension = Math.sqrt(grid.size)
   end
 
+  def end_of_game?(grid)
+    tie?(grid) || win?(grid)
+  end
+
   def tie?(grid)
     grid.all? { |cell| cell == "X" || cell == "O" }
   end
@@ -18,6 +22,10 @@ class Board
   def mark_grid(grid, cell, mark)
     grid[cell] = mark
     grid
+  end
+
+  def available_cell?(grid, cell)
+    grid[cell] != "X" && grid[cell] != "O"
   end
 
   private

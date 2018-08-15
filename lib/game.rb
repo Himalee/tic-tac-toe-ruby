@@ -10,9 +10,9 @@ class Game
   def start_game
     @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
     @output.puts "Enter [0-8]:"
-    until @board.win?(@board.grid) || @board.tie?(@board.grid)
+    until @board.end_of_game?(@board.grid)
       get_human_spot
-      if !@board.win?(@board.grid) && !@board.tie?(@board.grid)
+      if !@board.end_of_game?(@board.grid)
         eval_board
       end
       @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
@@ -24,7 +24,7 @@ class Game
     spot = nil
     until spot
       spot = @input.gets.chomp.to_i
-      if @board.grid[spot] != "X" && @board.grid[spot] != "O"
+      if @board.available_cell?(@board.grid, spot)
         @board.mark_grid(@board.grid, spot, @hum)
       else
         spot = nil
@@ -40,7 +40,7 @@ class Game
         @board.mark_grid(@board.grid, spot, @com)
       else
         spot = get_best_move(@board.grid, @com)
-        if @board.grid[spot] != "X" && @board.grid[spot] != "O"
+        if @board.available_cell?(@board.grid, spot)
           @board.mark_grid(@board.grid, spot, @com)
         else
           spot = nil
