@@ -40,4 +40,15 @@ describe Board do
       expect(board.win?(grid)).to be true
     end
   end
+
+  describe "#mark_grid()" do
+    it "returns a marked board given cell 0" do
+      grid = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      board = Board.new(grid)
+      mark = "X"
+      cell = 0
+      board.mark_grid(grid, cell, mark)
+      expect(board.grid).to eql(["X", 1, 2, 3, 4, 5, 6, 7, 8])
+    end
+  end
 end
