@@ -27,7 +27,7 @@ class Game
     until spot
       spot = @input.gets.chomp.to_i
       if @board.grid[spot] != "X" && @board.grid[spot] != "O"
-        @board.grid[spot] = @hum
+        @board.mark_grid(@board.grid, spot, @hum)
       else
         spot = nil
       end
@@ -39,11 +39,11 @@ class Game
     until spot
       if @board.grid[4] == "4"
         spot = 4
-        @board.grid[spot] = @com
+        @board.mark_grid(@board.grid, spot, @com)
       else
         spot = get_best_move(@board.grid, @com)
         if @board.grid[spot] != "X" && @board.grid[spot] != "O"
-          @board.grid[spot] = @com
+          @board.mark_grid(@board.grid, spot, @com)
         else
           spot = nil
         end

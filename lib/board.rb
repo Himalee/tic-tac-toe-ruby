@@ -15,6 +15,11 @@ class Board
     all_winning_combinations(grid).any? {|line| line.uniq.length == 1}
   end
 
+  def mark_grid(grid, cell, mark)
+    grid[cell] = mark
+    grid
+  end
+
   private
 
   def all_winning_combinations(grid)
