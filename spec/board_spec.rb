@@ -7,5 +7,11 @@ describe Board do
       board = Board.new(grid)
       expect(board.tie?(grid)).to be false
     end
+
+    it "returns true given marked board with no win" do
+      grid = ["X", "O", "X", "O", "X", "O", "O", "X", "O"]
+      board = Board.new(grid)
+      expect(board.tie?(grid)).to be true
+    end
   end
 end
