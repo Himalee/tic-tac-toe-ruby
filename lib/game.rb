@@ -9,15 +9,15 @@ class Game
 
   def start_game
     # start by printing the board
-    @output.puts " #{@board[0]} | #{@board[1]} | #{@board[2]} \n===+===+===\n #{@board[3]} | #{@board[4]} | #{@board[5]} \n===+===+===\n #{@board[6]} | #{@board[7]} | #{@board[8]} \n"
+    @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
     @output.puts "Enter [0-8]:"
     # loop through until the game was won or tied
-    until game_is_over(@board) || tie(@board)
+    until game_is_over(@board.grid) || @board.tie?(@board.grid)
       get_human_spot
-      if !game_is_over(@board) && !tie(@board)
+      if !game_is_over(@board.grid) && !@board.tie?(@board.grid)
         eval_board
       end
-      @output.puts " #{@board[0]} | #{@board[1]} | #{@board[2]} \n===+===+===\n #{@board[3]} | #{@board[4]} | #{@board[5]} \n===+===+===\n #{@board[6]} | #{@board[7]} | #{@board[8]} \n"
+      @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
     end
     @output.puts "Game over"
   end
@@ -26,8 +26,8 @@ class Game
     spot = nil
     until spot
       spot = @input.gets.chomp.to_i
-      if @board[spot] != "X" && @board[spot] != "O"
-        @board[spot] = @hum
+      if @board.grid[spot] != "X" && @board.grid[spot] != "O"
+        @board.grid[spot] = @hum
       else
         spot = nil
       end
@@ -37,13 +37,13 @@ class Game
   def eval_board
     spot = nil
     until spot
-      if @board[4] == "4"
+      if @board.grid[4] == "4"
         spot = 4
-        @board[spot] = @com
+        @board.grid[spot] = @com
       else
-        spot = get_best_move(@board, @com)
-        if @board[spot] != "X" && @board[spot] != "O"
-          @board[spot] = @com
+        spot = get_best_move(@board.grid, @com)
+        if @board.grid[spot] != "X" && @board.grid[spot] != "O"
+          @board.grid[spot] = @com
         else
           spot = nil
         end
@@ -94,9 +94,5 @@ class Game
     [b[2], b[5], b[8]].uniq.length == 1 ||
     [b[0], b[4], b[8]].uniq.length == 1 ||
     [b[2], b[4], b[6]].uniq.length == 1
-  end
-
-  def tie(b)
-    b.all? { |s| s == "X" || s == "O" }
   end
 end

@@ -1,9 +1,10 @@
 require "game"
 
 describe Game do
-  
+
   before :each do
-    @board = ["O", "X", "O", "X", "O", "X", "X", 7, 8]
+    grid = ["O", "X", "O", "X", "O", "X", "X", 7, 8]
+    @board = Board.new(grid)
     input = StringIO.new("7")
     @output = StringIO.new
     game = Game.new(@board, @output, input)
@@ -16,7 +17,7 @@ describe Game do
     end
 
     it "returns Board" do
-      expect(@board).to eql(["O", "X", "O", "X", "O", "X", "X", "O", "X"])
+      expect(@board.grid).to eql(["O", "X", "O", "X", "O", "X", "X", "O", "X"])
     end
   end
 end
