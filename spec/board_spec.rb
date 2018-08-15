@@ -22,8 +22,20 @@ describe Board do
       expect(board.win?(grid)).to be false
     end
 
-    it "returns true given board with a win" do
+    it "returns true given board with a win - row" do
       grid = ["X", "X", "X", 3, 4, 5, 6, 7, 8]
+      board = Board.new(grid)
+      expect(board.win?(grid)).to be true
+    end
+
+    it "returns true given board with a win - column" do
+      grid = ["X", 1, 2, "X", 4, 5, "X", 7, 8]
+      board = Board.new(grid)
+      expect(board.win?(grid)).to be true
+    end
+
+    it "returns true given board with a win - diagonal" do
+      grid = ["X", 1, 2, 3, "X", 5, 6, 7, "X"]
       board = Board.new(grid)
       expect(board.win?(grid)).to be true
     end
