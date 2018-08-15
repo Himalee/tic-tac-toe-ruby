@@ -11,4 +11,16 @@ class Display
   def new_line
     "\n===+===+===\n"
   end
+
+  def game_over
+    @console.present("Game over")
+  end
+
+  def get_cell
+    @console.receive.to_i
+  end
+
+  def prompt_for_cell
+    @console.present("Enter [0-8]:")
+  end
 end

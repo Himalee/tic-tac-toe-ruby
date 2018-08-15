@@ -1,15 +1,14 @@
 class Game
-  def initialize(board, output = $stdout, input = $stdin)
+  def initialize(board, display)
     @board = board
     @com = "X"
     @hum = "O"
-    @output = output
-    @input = input
+    @display = display
   end
 
   def start_game
     display_board
-    @output.puts "Enter [0-8]:"
+    @display.prompt_for_cell
     until @board.end_of_game?(@board.grid)
       get_human_spot
       if !@board.end_of_game?(@board.grid)
@@ -17,17 +16,17 @@ class Game
       end
       display_board
     end
-    @output.puts "Game over"
+    @display.game_over
   end
 
   def display_board
-    @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
+    @display.present_board(@board.grid)
   end
 
   def get_human_spot
     spot = nil
     until spot
-      spot = @input.gets.chomp.to_i
+      spot = @display.get_cell
       @board.mark_grid_with_valid_cell(spot, @hum)
     end
   end
