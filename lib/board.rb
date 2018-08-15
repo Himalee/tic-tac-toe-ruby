@@ -28,6 +28,14 @@ class Board
     grid[cell] != "X" && grid[cell] != "O"
   end
 
+  def mark_grid_with_valid_cell(cell, mark)
+    if available_cell?(@grid, cell)
+      mark_grid(@grid, cell, mark)
+    else
+      cell = nil
+    end
+  end
+
   private
 
   def all_winning_combinations(grid)
