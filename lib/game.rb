@@ -12,9 +12,9 @@ class Game
     @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
     @output.puts "Enter [0-8]:"
     # loop through until the game was won or tied
-    until game_is_over(@board.grid) || @board.tie?(@board.grid)
+    until @board.win?(@board.grid) || @board.tie?(@board.grid)
       get_human_spot
-      if !game_is_over(@board.grid) && !@board.tie?(@board.grid)
+      if !@board.win?(@board.grid) && !@board.tie?(@board.grid)
         eval_board
       end
       @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
@@ -61,13 +61,13 @@ class Game
     end
     available_spaces.each do |as|
       board[as.to_i] = @com
-      if game_is_over(board)
+      if @board.win?(board)
         best_move = as.to_i
         board[as.to_i] = as
         return best_move
       else
         board[as.to_i] = @hum
-        if game_is_over(board)
+        if @board.win?(board)
           best_move = as.to_i
           board[as.to_i] = as
           return best_move
@@ -82,17 +82,5 @@ class Game
       n = rand(0..available_spaces.count)
       return available_spaces[n].to_i
     end
-  end
-
-  def game_is_over(b)
-
-    [b[0], b[1], b[2]].uniq.length == 1 ||
-    [b[3], b[4], b[5]].uniq.length == 1 ||
-    [b[6], b[7], b[8]].uniq.length == 1 ||
-    [b[0], b[3], b[6]].uniq.length == 1 ||
-    [b[1], b[4], b[7]].uniq.length == 1 ||
-    [b[2], b[5], b[8]].uniq.length == 1 ||
-    [b[0], b[4], b[8]].uniq.length == 1 ||
-    [b[2], b[4], b[6]].uniq.length == 1
   end
 end

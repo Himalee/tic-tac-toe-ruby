@@ -21,5 +21,11 @@ describe Board do
       board = Board.new(grid)
       expect(board.win?(grid)).to be false
     end
+
+    it "returns true given board with a win" do
+      grid = ["X", "X", "X", 3, 4, 5, 6, 7, 8]
+      board = Board.new(grid)
+      expect(board.win?(grid)).to be true
+    end
   end
 end
