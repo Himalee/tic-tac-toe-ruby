@@ -1,17 +1,15 @@
 class Game
   def initialize(board, output = $stdout, input = $stdin)
     @board = board
-    @com = "X" # the computer's marker
-    @hum = "O" # the user's marker
+    @com = "X"
+    @hum = "O"
     @output = output
     @input = input
   end
 
   def start_game
-    # start by printing the board
     @output.puts " #{@board.grid[0]} | #{@board.grid[1]} | #{@board.grid[2]} \n===+===+===\n #{@board.grid[3]} | #{@board.grid[4]} | #{@board.grid[5]} \n===+===+===\n #{@board.grid[6]} | #{@board.grid[7]} | #{@board.grid[8]} \n"
     @output.puts "Enter [0-8]:"
-    # loop through until the game was won or tied
     until @board.win?(@board.grid) || @board.tie?(@board.grid)
       get_human_spot
       if !@board.win?(@board.grid) && !@board.tie?(@board.grid)
