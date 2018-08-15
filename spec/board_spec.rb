@@ -51,4 +51,12 @@ describe Board do
       expect(board.grid).to eql(["X", 1, 2, 3, 4, 5, 6, 7, 8])
     end
   end
+
+  describe "#available_spaces()" do
+    it "returns array of available spaces" do
+      grid = ["X", "O", 2, 3, "X", 5, "O", 7, "X"]
+      board = Board.new(grid)
+      expect(board.available_spaces(grid)).to eql([2, 3, 5, 7])
+    end
+  end
 end

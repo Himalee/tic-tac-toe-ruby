@@ -28,6 +28,28 @@ class Board
     grid[cell] != "X" && grid[cell] != "O"
   end
 
+  def mark_grid_with_valid_cell(cell, mark)
+    if available_cell?(@grid, cell)
+      mark_grid(@grid, cell, mark)
+    else
+      cell = nil
+    end
+  end
+
+  def available_spaces(grid)
+    available_spaces = []
+    grid.each do |cell|
+      if cell != "X" && cell != "O"
+        available_spaces << cell
+      end
+    end
+    available_spaces
+  end
+
+  def random_available_space(grid)
+    available_spaces(grid).sample
+  end
+
   private
 
   def all_winning_combinations(grid)
