@@ -1,4 +1,5 @@
 require "display"
+require "message"
 
 describe Display do
   it "presents board" do

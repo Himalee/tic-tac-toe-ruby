@@ -7,14 +7,14 @@ class Game
   end
 
   def start_game
+    @display.welcome
     display_board
-    @display.prompt_for_cell
     until @board.end_of_game?(@board.grid)
+      @display.prompt_for_cell
       get_human_cell
       if !@board.end_of_game?(@board.grid)
         eval_board
       end
-      display_board
     end
     @display.game_over
   end
@@ -30,6 +30,8 @@ class Game
     until cell
       cell = @display.get_cell
       @board.mark_grid_with_valid_cell(cell, @hum)
+      display_board
+      @display.chosen_cell(cell)
     end
   end
 
@@ -39,9 +41,13 @@ class Game
       if @board.grid[4] == "4"
         cell = 4
         @board.mark_grid(@board.grid, cell, @com)
+        display_board
+        @display.chosen_cell(cell)
       else
         cell = get_best_move(@board.grid, @com)
         @board.mark_grid_with_valid_cell(cell, @com)
+        display_board
+        @display.chosen_cell(cell)
       end
     end
   end
