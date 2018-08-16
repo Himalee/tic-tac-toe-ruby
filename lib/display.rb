@@ -1,8 +1,9 @@
 class Display
 
-  def initialize(console = Console.new, message = Message.new)
+  def initialize(console = Console.new, message = Message.new, validator)
     @console = console
     @message = message
+    @validator = validator
   end
 
   def present_board(grid)
@@ -21,8 +22,17 @@ class Display
     @console.present(@message.end_of_game)
   end
 
-  def get_cell
+  def receive_integer
     @console.receive.to_i
+  end
+
+  def get_valid_cell
+    choice = receive_integer
+    until @validator.valid_cell?(choice)
+      prompt_for_cell
+      choice = receive_integer
+    end
+    choice
   end
 
   def prompt_for_cell

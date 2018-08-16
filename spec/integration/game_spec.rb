@@ -8,7 +8,8 @@ describe Game do
     input = StringIO.new("7")
     @output = StringIO.new
     console = Console.new(@output, input)
-    display = Display.new(console)
+    validator = Validator.new(@board)
+    display = Display.new(console, validator)
     game = Game.new(@board, display)
     game.start_game
   end
