@@ -1,19 +1,24 @@
 class Display
 
-  def initialize(console = Console.new)
+  def initialize(console = Console.new, message = Message.new)
     @console = console
+    @message = message
   end
 
   def present_board(grid)
-    @console.present(" #{grid[0]} | #{grid[1]} | #{grid[2]} #{new_line} #{grid[3]} | #{grid[4]} | #{grid[5]} #{new_line} #{grid[6]} | #{grid[7]} | #{grid[8]} \n")
+    @console.present(" #{grid[0]} | #{grid[1]} | #{grid[2]} #{insert_line} #{grid[3]} | #{grid[4]} | #{grid[5]} #{insert_line} #{grid[6]} | #{grid[7]} | #{grid[8]} \n")
   end
 
-  def new_line
+  def welcome
+    @console.present(@message.welcome)
+  end
+
+  def insert_line
     "\n===+===+===\n"
   end
 
   def game_over
-    @console.present("Game over")
+    @console.present(@message.end_of_game)
   end
 
   def get_cell
@@ -21,6 +26,10 @@ class Display
   end
 
   def prompt_for_cell
-    @console.present("Enter [0-8]:")
+    @console.present(@message.prompt_for_cell)
+  end
+
+  def chosen_cell(choice)
+    @console.present(@message.chosen_cell(choice))
   end
 end

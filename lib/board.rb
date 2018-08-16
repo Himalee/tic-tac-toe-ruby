@@ -23,10 +23,6 @@ class Board
     grid
   end
 
-  def available_cell?(grid, cell)
-    grid[cell] != "X" && grid[cell] != "O"
-  end
-
   def mark_grid_with_valid_cell(cell, mark)
     if available_cell?(@grid, cell)
       mark_grid(@grid, cell, mark)
@@ -50,6 +46,10 @@ class Board
   end
 
   private
+
+  def available_cell?(grid, cell)
+    grid[cell] != "X" && grid[cell] != "O"
+  end
 
   def all_winning_combinations(grid)
     [[grid[0], grid[1], grid[2]],
