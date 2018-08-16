@@ -5,10 +5,10 @@ describe Game do
   before :each do
     grid = ["O", "X", "O", "X", "O", "X", "X", 7, 8]
     @board = Board.new(grid)
-    input = StringIO.new("7")
+    input = StringIO.new("0\nhello\n12\n7")
     @output = StringIO.new
     console = Console.new(@output, input)
-    validator = Validator.new(@board)
+    validator = Validator.new
     display = Display.new(console, validator)
     game = Game.new(@board, display)
     game.start_game
@@ -20,7 +20,7 @@ describe Game do
     end
 
     it "returns Board" do
-      expect(@board.grid).to eql(["O", "X", "O", "X", "O", "X", "X", "O", "X"])
+      expect(@output.string).to include(" O | X | O \n===+===+===\n X | O | X \n===+===+===\n X | O | X \n")
     end
   end
 end

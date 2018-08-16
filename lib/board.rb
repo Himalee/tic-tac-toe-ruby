@@ -23,6 +23,12 @@ class Board
     grid
   end
 
+  def new_board(cell, mark)
+    current_grid = @grid.dup
+    new_grid = mark_grid(current_grid, cell, mark)
+    Board.new(new_grid)
+  end
+
   def available_spaces(grid)
     available_spaces = []
     grid.each do |cell|

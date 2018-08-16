@@ -24,7 +24,7 @@ class Game
   def get_human_cell
     cell = nil
     until cell
-      cell = @display.get_valid_cell
+      cell = @display.get_valid_cell(@board)
       player_turn(cell, @hum)
     end
   end
@@ -43,7 +43,7 @@ class Game
   end
 
   def player_turn(cell, mark)
-    @board.mark_grid(@board.grid, cell, mark)
+    @board = @board.new_board(cell, mark)
     display_board
     @display.chosen_cell(cell)
   end

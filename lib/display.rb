@@ -26,9 +26,9 @@ class Display
     @console.receive.to_i
   end
 
-  def get_valid_cell
+  def get_valid_cell(board)
     choice = receive_integer
-    until @validator.valid_cell?(choice)
+    until @validator.valid_cell?(board, choice)
       prompt_for_cell
       choice = receive_integer
     end
