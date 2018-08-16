@@ -21,17 +21,11 @@ class Game
 
   private
 
-  def display_board
-    @display.present_board(@board.grid)
-  end
-
   def get_human_cell
     cell = nil
     until cell
       cell = @display.get_cell
-      @board.mark_grid_with_valid_cell(cell, @hum)
-      display_board
-      @display.chosen_cell(cell)
+      player_turn(cell, @hum)
     end
   end
 
@@ -40,16 +34,22 @@ class Game
     until cell
       if @board.grid[4] == "4"
         cell = 4
-        @board.mark_grid(@board.grid, cell, @com)
-        display_board
-        @display.chosen_cell(cell)
+        player_turn(cell, @com)
       else
         cell = get_best_move(@board.grid, @com)
-        @board.mark_grid_with_valid_cell(cell, @com)
-        display_board
-        @display.chosen_cell(cell)
+        player_turn(cell, @com)
       end
     end
+  end
+
+  def player_turn(cell, mark)
+    @board.mark_grid_with_valid_cell(cell, mark)
+    display_board
+    @display.chosen_cell(cell)
+  end
+
+  def display_board
+    @display.present_board(@board.grid)
   end
 
   def get_best_move(board, next_player, depth = 0, best_score = {})
