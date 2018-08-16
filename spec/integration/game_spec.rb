@@ -7,7 +7,9 @@ describe Game do
     @board = Board.new(grid)
     input = StringIO.new("7")
     @output = StringIO.new
-    game = Game.new(@board, @output, input)
+    console = Console.new(@output, input)
+    display = Display.new(console)
+    game = Game.new(@board, display)
     game.start_game
   end
 

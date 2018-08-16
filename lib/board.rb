@@ -4,7 +4,6 @@ class Board
 
   def initialize(grid)
     @grid = grid
-    @dimension = Math.sqrt(grid.size)
   end
 
   def end_of_game?(grid)
