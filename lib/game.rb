@@ -22,23 +22,17 @@ class Game
   private
 
   def get_human_cell
-    cell = nil
-    until cell
-      cell = @display.get_valid_cell(@board)
-      player_turn(cell, @hum)
-    end
+    cell = @display.get_valid_cell(@board)
+    player_turn(cell, @hum)
   end
 
   def eval_board
-    cell = nil
-    until cell
-      if @board.grid[4] == "4"
-        cell = 4
-        player_turn(cell, @com)
-      else
-        cell = get_best_move(@board.grid, @com)
-        player_turn(cell, @com)
-      end
+    if @board.grid[4] == "4"
+      cell = 4
+      player_turn(cell, @com)
+    else
+      cell = get_best_move(@board.grid, @com)
+      player_turn(cell, @com)
     end
   end
 
