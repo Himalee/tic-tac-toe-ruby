@@ -1,10 +1,11 @@
 class Game
-  def initialize(board, display, hard_computer_player)
+  def initialize(board, display, hard_computer_player, human_player)
     @board = board
     @com = "X"
     @hum = "O"
     @display = display
     @hard_computer_player = hard_computer_player
+    @human_player = human_player
   end
 
   def start_game
@@ -23,7 +24,7 @@ class Game
   private
 
   def get_human_cell
-    cell = @display.get_valid_cell(@board)
+    cell = @human_player.get_move(@board)
     player_turn(cell, @hum)
   end
 
