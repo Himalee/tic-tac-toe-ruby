@@ -12,7 +12,7 @@ require_relative "negamax"
 board = Board.new([0, 1, 2, 3, 4, 5, 6, 7, 8])
 validator = Validator.new
 display = Display.new(validator)
-hard_computer_player = HardComputerPlayer.new(board)
+hard_computer_player = HardComputerPlayer.new
 human_player = HumanPlayer.new(display)
 game = Game.new(board, display, hard_computer_player, human_player)
 game.start_game

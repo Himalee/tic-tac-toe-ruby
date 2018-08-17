@@ -1,7 +1,6 @@
 class HardComputerPlayer
 
-  def initialize(board)
-    @board = board
+  def initialize
     @com = "X"
   end
 

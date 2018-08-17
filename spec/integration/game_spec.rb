@@ -12,7 +12,7 @@ describe Game do
     console = Console.new(@output, input)
     validator = Validator.new
     display = Display.new(console, validator)
-    hard_computer_player = HardComputerPlayer.new(@board)
+    hard_computer_player = HardComputerPlayer.new
     human_player = HumanPlayer.new(display)
     game = Game.new(@board, display, hard_computer_player, human_player)
     game.start_game
