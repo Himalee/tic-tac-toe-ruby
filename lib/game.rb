@@ -29,7 +29,7 @@ class Game
   end
 
   def get_computer_cell
-    cell = @hard_computer_player.get_best_move(@board.grid, @com)
+    cell = @hard_computer_player.get_move(@board)
     player_turn(cell, @com)
   end
 

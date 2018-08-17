@@ -1,4 +1,6 @@
 require "game"
+require "negamax"
+require "hard_computer_player"
 
 describe Game do
 
