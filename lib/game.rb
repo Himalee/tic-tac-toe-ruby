@@ -14,7 +14,7 @@ class Game
       @display.prompt_for_cell
       get_human_cell
       if !@board.end_of_game?(@board.grid)
-        eval_board
+        get_computer_cell
       end
     end
     @display.game_over
@@ -27,7 +27,7 @@ class Game
     player_turn(cell, @hum)
   end
 
-  def eval_board
+  def get_computer_cell
     cell = @hard_computer_player.get_best_move(@board.grid, @com)
     player_turn(cell, @com)
   end
