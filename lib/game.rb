@@ -1,9 +1,10 @@
 class Game
-  def initialize(board, display)
+  def initialize(board, display, hard_computer_player)
     @board = board
     @com = "X"
     @hum = "O"
     @display = display
+    @hard_computer_player = hard_computer_player
   end
 
   def start_game
@@ -13,7 +14,7 @@ class Game
       @display.prompt_for_cell
       get_human_cell
       if !@board.end_of_game?(@board.grid)
-        eval_board
+        get_computer_cell
       end
     end
     @display.game_over
@@ -26,14 +27,9 @@ class Game
     player_turn(cell, @hum)
   end
 
-  def eval_board
-    if @board.grid[4] == "4"
-      cell = 4
-      player_turn(cell, @com)
-    else
-      cell = get_best_move(@board.grid, @com)
-      player_turn(cell, @com)
-    end
+  def get_computer_cell
+    cell = @hard_computer_player.get_best_move(@board.grid, @com)
+    player_turn(cell, @com)
   end
 
   def player_turn(cell, mark)
@@ -44,31 +40,5 @@ class Game
 
   def display_board
     @display.present_board(@board.grid)
-  end
-
-  def get_best_move(board, next_player, depth = 0, best_score = {})
-    best_move = nil
-    @board.available_spaces(board).each do |cell|
-      board[cell.to_i] = @com
-      if @board.win?(board)
-        best_move = cell.to_i
-        board[cell.to_i] = cell
-        return best_move
-      else
-        board[cell.to_i] = @hum
-        if @board.win?(board)
-          best_move = cell.to_i
-          board[cell.to_i] = cell
-          return best_move
-        else
-          board[cell.to_i] = cell
-        end
-      end
-    end
-    if best_move
-      return best_move
-    else
-      return @board.random_available_space(board)
-    end
   end
 end

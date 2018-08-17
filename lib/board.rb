@@ -39,10 +39,6 @@ class Board
     available_spaces
   end
 
-  def random_available_space(grid)
-    available_spaces(grid).sample
-  end
-
   private
 
   def all_winning_combinations(grid)
