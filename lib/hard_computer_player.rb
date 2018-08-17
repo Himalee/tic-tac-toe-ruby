@@ -4,29 +4,28 @@ class HardComputerPlayer
     @board = board
   end
 
-  def get_best_move(board, next_player, depth = 0, best_score = {})
-    best_move = nil
-    @board.available_spaces(board).each do |cell|
-      board[cell.to_i] = @com
-      if @board.win?(board)
-        best_move = cell.to_i
-        board[cell.to_i] = cell
-        return best_move
-      else
-        board[cell.to_i] = @hum
-        if @board.win?(board)
-          best_move = cell.to_i
-          board[cell.to_i] = cell
-          return best_move
-        else
-          board[cell.to_i] = cell
-        end
-      end
+  def get_best_move(grid, depth=0, best_score={}, mark)
+    return 0 if @board.tie?(grid)
+    return -1 if @board.win?(grid)
+    @board.available_spaces(grid).each do |cell|
+      possible_grid = grid.dup
+      other_grid = @board.mark_grid(possible_grid, cell, mark)
+      best_score[cell] = -1 * get_best_move(other_grid, depth + 1, {}, opponent_mark(mark))
     end
-    if best_move
+    best_move = best_score.max_by { |key, value| value }[0]
+    highest_minimax_score = best_score.max_by { |key, value| value }[1]
+    if depth == 0
       return best_move
+    elsif depth > 0
+      return highest_minimax_score
+    end
+  end
+
+  def opponent_mark(mark)
+    if mark == "X"
+      "O"
     else
-      return @board.random_available_space(board)
+      "X"
     end
   end
 end
