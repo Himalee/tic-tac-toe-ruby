@@ -51,4 +51,17 @@ class Display
   def chosen_cell(choice)
     @console.present(@message.chosen_cell(choice))
   end
+
+  def choose_game_mode
+    @console.present(@message.game_mode)
+  end
+
+  def valid_game_mode_response
+    choice = receive_integer
+    until @validator.valid_game_mode?(choice)
+      choose_game_mode
+      choice = receive_integer
+    end
+    choice
+  end
 end

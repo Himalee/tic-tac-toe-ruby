@@ -7,7 +7,7 @@ describe Game do
   before :each do
     grid = ["O", "X", "O", "X", "O", "X", "X", 7, 8]
     @board = Board.new(grid)
-    input = StringIO.new("0\nhello\n12\n7")
+    input = StringIO.new("3\n0\nhello\n12\n7")
     @output = StringIO.new
     console = Console.new(@output, input)
     validator = Validator.new
