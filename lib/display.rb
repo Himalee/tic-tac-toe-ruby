@@ -22,8 +22,17 @@ class Display
     @console.present(@message.end_of_game)
   end
 
+  def receive_string
+    @console.receive
+  end
+
   def receive_integer
-    @console.receive.to_i
+    user_input = receive_string
+    until @validator.valid_input?(user_input)
+      prompt_for_cell
+      user_input = receive_string
+    end
+    user_input.to_i
   end
 
   def get_valid_cell(board)
