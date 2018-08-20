@@ -24,12 +24,12 @@ class Game
 
   def get_human_cell
     cell = @players[0].get_move(@board)
-    player_turn(cell, @hum)
+    player_turn(cell, @players[0].mark)
   end
 
   def get_computer_cell
     cell = @players[1].get_move(@board)
-    player_turn(cell, @com)
+    player_turn(cell, @players[1].mark)
   end
 
   def player_turn(cell, mark)

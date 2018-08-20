@@ -1,11 +1,6 @@
-class HardComputerPlayer
-
-  def initialize
-    @com = "X"
-  end
+class HardComputerPlayer < Player
 
   def get_move(board)
-    mark = @com
-    Negamax.new(board).get_best_move(board.grid, mark)
+    Negamax.new(board).get_best_move(board.grid, self.mark)
   end
 end

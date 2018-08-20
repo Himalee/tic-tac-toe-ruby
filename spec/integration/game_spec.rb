@@ -12,8 +12,8 @@ describe Game do
     console = Console.new(@output, input)
     validator = Validator.new
     display = Display.new(console, validator)
-    hard_computer_player = HardComputerPlayer.new
-    human_player = HumanPlayer.new(display)
+    hard_computer_player = HardComputerPlayer.new(display, "X")
+    human_player = HumanPlayer.new(display, "O")
     players = [human_player, hard_computer_player]
     game = Game.new(@board, display, players)
     game.start_game

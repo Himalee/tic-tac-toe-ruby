@@ -1,3 +1,4 @@
+require "player"
 require "human_player"
 require "board"
 require "validator"
@@ -18,7 +19,7 @@ describe HumanPlayer do
     input = StringIO.new("33\n3")
     console = Console.new(@output, input)
     display = Display.new(console, @validator)
-    human_player = HumanPlayer.new(display)
+    human_player = HumanPlayer.new(display, "O")
     expect(human_player.get_move(@board)).to eql(3)
   end
 
@@ -26,7 +27,7 @@ describe HumanPlayer do
     input = StringIO.new("hello\n45\n4")
     console = Console.new(@output, input)
     display = Display.new(console, @validator)
-    human_player = HumanPlayer.new(display)
+    human_player = HumanPlayer.new(display, "O")
     expect(human_player.get_move(@board)).to eql(4)
   end
 end
