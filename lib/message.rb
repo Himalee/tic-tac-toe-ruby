@@ -15,4 +15,8 @@ class Message
   def chosen_cell(cell)
     "Cell #{cell} was chosen"
   end
+
+  def game_mode
+    "Would you like to play:\n1. Human vs Human\n2. Computer vs Computer\n3. Human vs Computer"
+  end
 end
