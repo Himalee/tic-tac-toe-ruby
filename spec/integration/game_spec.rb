@@ -14,7 +14,8 @@ describe Game do
     display = Display.new(console, validator)
     hard_computer_player = HardComputerPlayer.new
     human_player = HumanPlayer.new(display)
-    game = Game.new(@board, display, hard_computer_player, human_player)
+    players = [human_player, hard_computer_player]
+    game = Game.new(@board, display, players)
     game.start_game
   end
 
