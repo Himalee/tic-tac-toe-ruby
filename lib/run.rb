@@ -12,7 +12,10 @@ require_relative "game_factory"
 require_relative "player_factory"
 require_relative "game_mode"
 
+
+validator = Validator.new
+display = Display.new(validator)
 player_factory = PlayerFactory.new
 game_mode = GameMode.new
-game_factory = GameFactory.new(player_factory, game_mode)
+game_factory = GameFactory.new(player_factory, game_mode, display)
 game_factory.create_game

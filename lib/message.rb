@@ -19,4 +19,8 @@ class Message
   def game_mode
     "Would you like to play:\n1. Human vs Human\n2. Computer vs Computer\n3. Human vs Computer"
   end
+
+  def choose_first_player(first_mark, second_mark)
+    "Which player would like to play first:\n1.Player with mark #{first_mark} \n2.Player with mark #{second_mark}"
+  end
 end
