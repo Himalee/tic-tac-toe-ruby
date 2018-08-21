@@ -1,7 +1,7 @@
 require "game_mode"
 
 describe GameMode do
-  it "returns game mode choice given invlaid input" do
+  it "returns game mode choice given invalid input" do
     output = StringIO.new
     input = StringIO.new("hello\n8\n12\n1")
     console = Console.new(output, input)

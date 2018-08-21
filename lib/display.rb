@@ -26,7 +26,7 @@ class Display
     @console.receive
   end
 
-  def receive_integer
+  def receive_integer_for_cell_choice
     user_input = receive_string
     until @validator.valid_input?(user_input)
       prompt_for_cell
@@ -36,12 +36,16 @@ class Display
   end
 
   def get_valid_cell(board)
-    choice = receive_integer
+    choice = receive_integer_for_cell_choice
     until @validator.valid_cell?(board, choice)
       prompt_for_cell
-      choice = receive_integer
+      choice = receive_integer_for_cell_choice
     end
     choice
+  end
+
+  def receive_integer
+    @console.receive.to_i
   end
 
   def prompt_for_cell
@@ -63,5 +67,18 @@ class Display
       choice = receive_integer
     end
     choice
+  end
+
+  def valid_set_up_players_response(first_type, second_type, first_mark, second_mark)
+    choice = receive_integer
+    until @validator.valid_set_players_mode?(choice)
+      choose_first_player(first_type, second_type, first_mark, second_mark)
+      choice = receive_integer
+    end
+    choice
+  end
+
+  def choose_first_player(first_type, second_type, first_mark, second_mark)
+    @console.present(@message.choose_first_player(first_type, second_type, first_mark, second_mark))
   end
 end
