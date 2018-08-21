@@ -19,7 +19,7 @@ class GameFactory
   def set_players
     game_mode_choice = @game_mode.choose_game_mode(@display)
     players = @player_factory.set_up_players(game_mode_choice, @display)
-    choice = @display.valid_set_up_players_response(players[FIRST_ELEMENT].mark, players[SECOND_ELEMENT].mark)
+    choice = @display.valid_set_up_players_response(players[FIRST_ELEMENT].name, players[SECOND_ELEMENT].name, players[FIRST_ELEMENT].mark, players[SECOND_ELEMENT].mark)
     if choice == SWITCH_PLAYERS
       players.rotate!
     end

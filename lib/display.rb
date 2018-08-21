@@ -69,17 +69,17 @@ class Display
     choice
   end
 
-  def valid_set_up_players_response(first_mark, second_mark)
-    choose_first_player(first_mark, second_mark)
+  def valid_set_up_players_response(first_type, second_type, first_mark, second_mark)
+    choose_first_player(first_type, second_type, first_mark, second_mark)
     choice = receive_integer
     until @validator.valid_set_players_mode?(choice)
-      choose_first_player(first_mark, second_mark)
+      choose_first_player(first_type, second_type, first_mark, second_mark)
       choice = receive_integer
     end
     choice
   end
 
-  def choose_first_player(first_mark, second_mark)
-    @console.present(@message.choose_first_player(first_mark, second_mark))
+  def choose_first_player(first_type, second_type, first_mark, second_mark)
+    @console.present(@message.choose_first_player(first_type, second_type, first_mark, second_mark))
   end
 end
