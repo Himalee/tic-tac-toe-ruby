@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-The object of Tic Tac Toe is to get three in a row. You play on a three by three game board. The first player is known as X and the second is O. Players alternate placing Xs and Os on the game board until either opponent has three in a row or all nine squares are filled.
+The object of Tic Tac Toe is to get three in a row. You play on a three by three game board. Players can choose their marks but traditionally the first player is known as X and the second is O. Players alternate placing Xs and Os on the game board until either opponent has three in a row or all nine squares are filled.
 
 ### To run game:
 
@@ -13,7 +13,7 @@ The object of Tic Tac Toe is to get three in a row. You play on a three by three
 1. Use ```rspec``` command
 
 
-### Improvements:
+### Improvements made:
 - Test suite
 - Overall structure of program - use of classes to separate concerns
 - The computer player is now unbeatable via 'Negamax' algorithm
@@ -21,4 +21,5 @@ The object of Tic Tac Toe is to get three in a row. You play on a three by three
 - Enhances user experience through better messaging, including when user enters invalid input
 
 ### New features:
-- Users can choose a game mode 
+- Users can choose a game mode
+- Users can choose which player goes first
