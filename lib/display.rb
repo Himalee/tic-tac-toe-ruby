@@ -70,7 +70,6 @@ class Display
   end
 
   def valid_set_up_players_response(first_type, second_type, first_mark, second_mark)
-    choose_first_player(first_type, second_type, first_mark, second_mark)
     choice = receive_integer
     until @validator.valid_set_players_mode?(choice)
       choose_first_player(first_type, second_type, first_mark, second_mark)
