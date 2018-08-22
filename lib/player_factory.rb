@@ -4,14 +4,31 @@ class PlayerFactory
   COMPUTER_VS_COMPUTER = 2
   HUMAN_VS_COMPUTER = 3
 
-  def set_up_players(choice, display)
+  def initialize(display)
+    @display = display
+  end
+
+  def set_up_players(choice)
     case choice
     when HUMAN_VS_HUMAN
-      [HumanPlayer.new(display, "O"), HumanPlayer.new(display, "X")]
+      [human_player, human_player]
     when COMPUTER_VS_COMPUTER
-      [HardComputerPlayer.new(display, "O"), HardComputerPlayer.new(display, "X")]
+      [computer_player, computer_player]
     when HUMAN_VS_COMPUTER
-      [HumanPlayer.new(display, "O"), HardComputerPlayer.new(display, "X")]
+      [human_player, computer_player]
     end
+  end
+
+  def human_player
+    HumanPlayer.new(@display, choose_mark("Human Player"))
+  end
+
+  def computer_player
+    HardComputerPlayer.new(@display, choose_mark("Computer Player"))
+  end
+
+  def choose_mark(player_type)
+    @display.choose_mark_prompt(player_type)
+    @display.get_mark(player_type)
   end
 end

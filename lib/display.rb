@@ -35,9 +35,9 @@ class Display
     user_input.to_i
   end
 
-  def get_valid_cell(board)
+  def get_valid_cell(board, player_one_mark, player_two_mark)
     choice = receive_integer_for_cell_choice
-    until @validator.valid_cell?(board, choice)
+    until @validator.valid_cell?(board, choice, player_one_mark, player_two_mark)
       prompt_for_cell
       choice = receive_integer_for_cell_choice
     end
@@ -80,5 +80,18 @@ class Display
 
   def choose_first_player(first_type, second_type, first_mark, second_mark)
     @console.present(@message.choose_first_player(first_type, second_type, first_mark, second_mark))
+  end
+
+  def choose_mark_prompt(player_type)
+    @console.present(@message.choose_mark(player_type))
+  end
+
+  def get_mark(player_type)
+    mark = receive_string
+    until @validator.valid_mark?(mark)
+      choose_mark_prompt(player_type)
+      mark = receive_string
+    end
+    mark
   end
 end

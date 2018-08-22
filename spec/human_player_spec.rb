@@ -20,7 +20,7 @@ describe HumanPlayer do
     console = Console.new(@output, input)
     display = Display.new(console, @validator)
     human_player = HumanPlayer.new(display, "O")
-    expect(human_player.get_move(@board)).to eql(3)
+    expect(human_player.get_move(@board, "O", "X")).to eql(3)
   end
 
   it "validate user input with non integer input" do
@@ -28,6 +28,6 @@ describe HumanPlayer do
     console = Console.new(@output, input)
     display = Display.new(console, @validator)
     human_player = HumanPlayer.new(display, "O")
-    expect(human_player.get_move(@board)).to eql(4)
+    expect(human_player.get_move(@board, "O", "X")).to eql(4)
   end
 end

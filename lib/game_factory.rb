@@ -11,15 +11,16 @@ class GameFactory
   end
 
   def create_game
+    players = set_players
     board = Board.new([0, 1, 2, 3, 4, 5, 6, 7, 8])
-    game = Game.new(board, @display, set_players)
+    game = Game.new(board, @display, players)
     game.start_game
   end
 
   def set_players
     players = get_players
-    @display.choose_first_player(players[FIRST_ELEMENT].name, players[SECOND_ELEMENT].name, players[FIRST_ELEMENT].mark, players[SECOND_ELEMENT].mark)
-    user_choice = @display.valid_set_up_players_response(players[FIRST_ELEMENT].name, players[SECOND_ELEMENT].name, players[FIRST_ELEMENT].mark, players[SECOND_ELEMENT].mark)
+    @display.choose_first_player(player_one(players).name, player_two(players).name, player_one(players).mark, player_two(players).mark)
+    user_choice = @display.valid_set_up_players_response(player_one(players).name, player_two(players).name, player_one(players).mark, player_two(players).mark)
     if user_choice == SWITCH_PLAYERS
       players.rotate!
     end
@@ -30,6 +31,14 @@ class GameFactory
 
   def get_players
     game_mode_choice = @game_mode.choose_game_mode(@display)
-    @player_factory.set_up_players(game_mode_choice, @display)
+    @player_factory.set_up_players(game_mode_choice)
+  end
+
+  def player_one(players)
+    players[FIRST_ELEMENT]
+  end
+
+  def player_two(players)
+    players[SECOND_ELEMENT]
   end
 end
