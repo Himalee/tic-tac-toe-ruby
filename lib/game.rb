@@ -22,9 +22,9 @@ class Game
   end
 
   def player_turns
-    until @board.end_of_game?(@board.grid)
+    until @board.end_of_game?(@board.grid, @players[0].mark, @players[1].mark)
       @display.prompt_for_cell
-      cell = current_player.get_move(@board)
+      cell = current_player.get_move(@board, @players[0].mark, @players[1].mark)
       @board = @board.new_board(cell, current_player.mark)
       display_board
       @display.chosen_cell(cell)

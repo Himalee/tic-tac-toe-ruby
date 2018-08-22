@@ -23,4 +23,8 @@ class Message
   def choose_first_player(first_type, second_type, first_mark, second_mark)
     "Which player would like to play first:\n1.#{first_type} with mark #{first_mark} \n2.#{second_type} with mark #{second_mark}"
   end
+
+  def choose_mark
+    "Please choose a mark that is one character long"
+  end
 end

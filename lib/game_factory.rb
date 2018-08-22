@@ -11,8 +11,9 @@ class GameFactory
   end
 
   def create_game
+    players = set_players
     board = Board.new([0, 1, 2, 3, 4, 5, 6, 7, 8])
-    game = Game.new(board, @display, set_players)
+    game = Game.new(board, @display, players)
     game.start_game
   end
 
@@ -30,6 +31,6 @@ class GameFactory
 
   def get_players
     game_mode_choice = @game_mode.choose_game_mode(@display)
-    @player_factory.set_up_players(game_mode_choice, @display)
+    @player_factory.set_up_players(game_mode_choice)
   end
 end

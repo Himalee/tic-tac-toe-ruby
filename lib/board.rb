@@ -6,12 +6,12 @@ class Board
     @grid = grid
   end
 
-  def end_of_game?(grid)
-    tie?(grid) || win?(grid)
+  def end_of_game?(grid, player_one_mark, player_two_mark)
+    tie?(grid, player_one_mark, player_two_mark) || win?(grid)
   end
 
-  def tie?(grid)
-    grid.all? { |cell| cell == "X" || cell == "O" }
+  def tie?(grid, player_one_mark, player_two_mark)
+    grid.all? { |cell| cell == player_one_mark || cell == player_two_mark }
   end
 
   def win?(grid)
@@ -29,10 +29,10 @@ class Board
     Board.new(new_grid)
   end
 
-  def available_spaces(grid)
+  def available_spaces(grid, player_one_mark, player_two_mark)
     available_spaces = []
     grid.each do |cell|
-      if cell != "X" && cell != "O"
+      if cell != player_one_mark && cell != player_two_mark
         available_spaces << cell
       end
     end
