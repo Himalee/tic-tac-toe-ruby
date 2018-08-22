@@ -13,8 +13,7 @@ class GameFactory
   def create_game
     players = set_players
     board = Board.new([0, 1, 2, 3, 4, 5, 6, 7, 8])
-    game = Game.new(board, @display, players)
-    game.start_game
+    Game.new(board, @display, players)
   end
 
   def set_players
