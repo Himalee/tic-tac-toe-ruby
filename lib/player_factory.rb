@@ -11,12 +11,20 @@ class PlayerFactory
   def set_up_players(choice)
     case choice
     when HUMAN_VS_HUMAN
-      [HumanPlayer.new(@display, choose_mark), HumanPlayer.new(@display, choose_mark)]
+      [human_player, human_player]
     when COMPUTER_VS_COMPUTER
-      [HardComputerPlayer.new(@display, choose_mark), HardComputerPlayer.new(@display, choose_mark)]
+      [computer_player, computer_player]
     when HUMAN_VS_COMPUTER
-      [HumanPlayer.new(@display, choose_mark), HardComputerPlayer.new(@display, choose_mark)]
+      [human_player, computer_player]
     end
+  end
+
+  def human_player
+    HumanPlayer.new(@display, choose_mark)
+  end
+
+  def computer_player
+    HardComputerPlayer.new(@display, choose_mark)
   end
 
   def choose_mark
