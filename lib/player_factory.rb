@@ -20,16 +20,15 @@ class PlayerFactory
   end
 
   def human_player
-    HumanPlayer.new(@display, choose_mark)
+    HumanPlayer.new(@display, choose_mark("Human Player"))
   end
 
   def computer_player
-    HardComputerPlayer.new(@display, choose_mark)
+    HardComputerPlayer.new(@display, choose_mark("Computer Player"))
   end
 
-  def choose_mark
-    @display.choose_mark_prompt
-    mark = @display.get_mark
-    mark
+  def choose_mark(player_type)
+    @display.choose_mark_prompt(player_type)
+    @display.get_mark(player_type)
   end
 end

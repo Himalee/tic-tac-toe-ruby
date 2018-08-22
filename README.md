@@ -17,9 +17,10 @@ The object of Tic Tac Toe is to get three in a row. You play on a three by three
 - Test suite
 - Overall structure of program - use of classes to separate concerns
 - The computer player is now unbeatable via 'Negamax' algorithm
-- Extracted the console so implementing another UI is possible
+- Extracts the console so implementing another UI is possible
 - Enhances user experience through better messaging, including when user enters invalid input
 
 ### New features:
-- Users can choose a game mode
+- Users can choose a game mode - human vs human, computer vs computer and human vs computer
 - Users can choose which player goes first
+- Users can choose the mark they would like to play with

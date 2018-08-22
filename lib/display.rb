@@ -82,14 +82,14 @@ class Display
     @console.present(@message.choose_first_player(first_type, second_type, first_mark, second_mark))
   end
 
-  def choose_mark_prompt
-    @console.present(@message.choose_mark)
+  def choose_mark_prompt(player_type)
+    @console.present(@message.choose_mark(player_type))
   end
 
-  def get_mark
+  def get_mark(player_type)
     mark = receive_string
     until @validator.valid_mark?(mark)
-      choose_mark_prompt
+      choose_mark_prompt(player_type)
       mark = receive_string
     end
     mark
