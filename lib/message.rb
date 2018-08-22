@@ -27,4 +27,8 @@ class Message
   def choose_mark(player_type)
     "Please choose a mark that is one character long for: #{player_type}"
   end
+
+  def draw
+    "It's a draw"
+  end
 end

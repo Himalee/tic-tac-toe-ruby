@@ -13,7 +13,7 @@ class Game
     @display.welcome
     display_board
     player_turns
-    @display.game_over
+    result
   end
 
   private
@@ -43,5 +43,13 @@ class Game
 
   def player_marks
     [@players[FIRST_ELEMENT].mark, @players[SECOND_ELEMENT].mark]
+  end
+
+  def result
+    if @board.tie?(@board.grid, player_marks[FIRST_ELEMENT], player_marks[SECOND_ELEMENT])
+      @display.draw
+    else
+      @display.game_over
+    end
   end
 end

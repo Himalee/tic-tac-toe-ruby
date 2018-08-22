@@ -94,4 +94,8 @@ class Display
     end
     mark
   end
+
+  def draw
+    @console.present(@message.draw)
+  end
 end
