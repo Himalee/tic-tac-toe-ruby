@@ -3,7 +3,6 @@ require "validator"
 describe Validator do
 
   context "validate cell choice" do
-
     before :each do
       @validator = Validator.new
     end

@@ -8,7 +8,6 @@ describe Game do
   let :output { StringIO.new }
 
   describe "human vs human game" do
-
     before :each do
       grid = ["O", "X", "O", "X", "O", "X", 6, 7, 8]
       board = Board.new(grid)

@@ -1,7 +1,6 @@
 require "negamax"
 
 describe Negamax do
-
   before :each do
     grid = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     board = Board.new(grid)
@@ -31,7 +30,7 @@ describe Negamax do
   end
 
   context "'O' move: returns cell given grid with" do
-    it "five moves left - stops opponenet from winning" do
+    it "five moves left - stops opponent from winning" do
       grid = ["X", 1, "X", 3, "O", "O", 6, 7, 8]
       expect(@negamax.get_best_move(grid, "O", "X", "O")).to eql(1)
     end

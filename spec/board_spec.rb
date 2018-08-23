@@ -42,7 +42,7 @@ describe Board do
   end
 
   describe "#mark_grid()" do
-    it "returns a marked board given cell 0" do
+    it "returns a marked board given cell '0'" do
       grid = [0, 1, 2, 3, 4, 5, 6, 7, 8]
       board = Board.new(grid)
       mark = "X"
