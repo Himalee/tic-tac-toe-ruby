@@ -23,9 +23,9 @@ class Game
   end
 
   def player_turns
-    until @board.end_of_game?(@board.grid, player_marks[FIRST_ELEMENT], player_marks[SECOND_ELEMENT])
+    until @board.end_of_game?(@board.grid, current_player.mark, opponent.mark)
       @display.prompt_for_cell
-      cell = current_player.get_move(@board, player_marks[FIRST_ELEMENT], player_marks[SECOND_ELEMENT])
+      cell = current_player.get_move(@board, current_player.mark, opponent.mark)
       @board = @board.new_board(cell, current_player.mark)
       display_board
       @display.chosen_cell(cell)
@@ -37,16 +37,16 @@ class Game
     @players[FIRST_ELEMENT]
   end
 
+  def opponent
+    @players[SECOND_ELEMENT]
+  end
+
   def next_player
     @players.rotate!
   end
 
-  def player_marks
-    [@players[FIRST_ELEMENT].mark, @players[SECOND_ELEMENT].mark]
-  end
-
   def result
-    if @board.tie?(@board.grid, player_marks[FIRST_ELEMENT], player_marks[SECOND_ELEMENT])
+    if @board.tie?(@board.grid, current_player.mark, opponent.mark)
       @display.draw
     else
       @display.game_over

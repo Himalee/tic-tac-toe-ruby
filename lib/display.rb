@@ -10,42 +10,29 @@ class Display
     @console.present(" #{grid[0]} | #{grid[1]} | #{grid[2]} #{insert_line} #{grid[3]} | #{grid[4]} | #{grid[5]} #{insert_line} #{grid[6]} | #{grid[7]} | #{grid[8]} \n")
   end
 
-  def welcome
-    @console.present(@message.welcome)
-  end
-
   def insert_line
     "\n===+===+===\n"
+  end
+
+  def welcome
+    @console.present(@message.welcome)
   end
 
   def game_over
     @console.present(@message.end_of_game)
   end
 
-  def receive_string
-    @console.receive
-  end
-
-  def receive_integer_for_cell_choice
-    user_input = receive_string
-    until @validator.valid_input?(user_input)
-      prompt_for_cell
-      user_input = receive_string
-    end
-    user_input.to_i
+  def draw
+    @console.present(@message.draw)
   end
 
   def get_valid_cell(board, player_one_mark, player_two_mark)
-    choice = receive_integer_for_cell_choice
-    until @validator.valid_cell?(board, choice, player_one_mark, player_two_mark)
+    choice = receive_string
+    until @validator.valid_cell?(choice) && @validator.available_cell?(board, choice.to_i, player_one_mark, player_two_mark)
       prompt_for_cell
-      choice = receive_integer_for_cell_choice
+      choice = receive_string
     end
-    choice
-  end
-
-  def receive_integer
-    @console.receive.to_i
+    choice.to_i
   end
 
   def prompt_for_cell
@@ -56,11 +43,7 @@ class Display
     @console.present(@message.chosen_cell(choice))
   end
 
-  def choose_game_mode
-    @console.present(@message.game_mode)
-  end
-
-  def valid_game_mode_response
+  def get_valid_game_mode_response
     choice = receive_integer
     until @validator.valid_game_mode?(choice)
       choose_game_mode
@@ -69,7 +52,11 @@ class Display
     choice
   end
 
-  def valid_set_up_players_response(first_type, second_type, first_mark, second_mark)
+  def choose_game_mode
+    @console.present(@message.game_mode)
+  end
+
+  def get_valid_set_up_players_response(first_type, second_type, first_mark, second_mark)
     choice = receive_integer
     until @validator.valid_set_players_mode?(choice)
       choose_first_player(first_type, second_type, first_mark, second_mark)
@@ -82,10 +69,6 @@ class Display
     @console.present(@message.choose_first_player(first_type, second_type, first_mark, second_mark))
   end
 
-  def choose_mark_prompt(player_type)
-    @console.present(@message.choose_mark(player_type))
-  end
-
   def get_mark(player_type)
     mark = receive_string
     until @validator.valid_mark?(mark)
@@ -95,7 +78,17 @@ class Display
     mark
   end
 
-  def draw
-    @console.present(@message.draw)
+  def choose_mark_prompt(player_type)
+    @console.present(@message.choose_mark(player_type))
+  end
+
+  private
+
+  def receive_string
+    @console.receive
+  end
+
+  def receive_integer
+    @console.receive.to_i
   end
 end
