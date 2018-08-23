@@ -22,6 +22,8 @@ class Negamax
     end
   end
 
+  private
+
   def get_opponent_mark(mark, player_one_mark, player_two_mark)
     if mark == player_one_mark
       player_two_mark
