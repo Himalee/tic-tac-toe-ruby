@@ -1,9 +1,10 @@
 class Board
 
-  attr_reader :grid
+  attr_reader :grid, :max_number_of_cells, :size
 
   def initialize(grid)
     @grid = grid
+    @size = 3
   end
 
   def end_of_game?(player_one_mark, player_two_mark)
@@ -37,6 +38,10 @@ class Board
       end
     end
     available_spaces
+  end
+
+  def max_number_of_cells
+    @size**2
   end
 
   private

@@ -19,7 +19,7 @@ class Game
   private
 
   def display_board
-    @display.present_board(@board.grid)
+    @display.present_board(@board)
   end
 
   def player_turns
