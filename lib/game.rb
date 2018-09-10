@@ -23,7 +23,7 @@ class Game
   end
 
   def player_turns
-    until @board.end_of_game?(@board.grid, current_player.mark, opponent.mark)
+    until @board.end_of_game?(current_player.mark, opponent.mark)
       @display.prompt_for_cell
       cell = current_player.get_move(@board, current_player.mark, opponent.mark)
       @board = @board.new_board(cell, current_player.mark)
@@ -46,7 +46,7 @@ class Game
   end
 
   def result
-    if @board.tie?(@board.grid, current_player.mark, opponent.mark)
+    if @board.tie?(current_player.mark, opponent.mark)
       @display.draw
     else
       @display.game_over

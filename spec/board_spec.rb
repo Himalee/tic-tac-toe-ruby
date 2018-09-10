@@ -5,13 +5,13 @@ describe Board do
     it "returns false given empty board" do
       grid = [0, 1, 2, 3, 4, 5, 6, 7, 8]
       board = Board.new(grid)
-      expect(board.tie?(grid, "O", "X")).to be false
+      expect(board.tie?("O", "X")).to be false
     end
 
     it "returns true given marked board with no win" do
       grid = ["X", "O", "X", "O", "X", "O", "O", "X", "O"]
       board = Board.new(grid)
-      expect(board.tie?(grid, "O", "X")).to be true
+      expect(board.tie?("O", "X")).to be true
     end
   end
 
@@ -19,25 +19,25 @@ describe Board do
     it "returns false given board with no win" do
       grid = ["X", "O", "X", "O", "X", "O", "O", "X", "O"]
       board = Board.new(grid)
-      expect(board.win?(grid)).to be false
+      expect(board.win?).to be false
     end
 
     it "returns true given board with a win - row" do
       grid = ["X", "X", "X", 3, 4, 5, 6, 7, 8]
       board = Board.new(grid)
-      expect(board.win?(grid)).to be true
+      expect(board.win?).to be true
     end
 
     it "returns true given board with a win - column" do
       grid = ["X", 1, 2, "X", 4, 5, "X", 7, 8]
       board = Board.new(grid)
-      expect(board.win?(grid)).to be true
+      expect(board.win?).to be true
     end
 
     it "returns true given board with a win - diagonal" do
       grid = ["X", 1, 2, 3, "X", 5, 6, 7, "X"]
       board = Board.new(grid)
-      expect(board.win?(grid)).to be true
+      expect(board.win?).to be true
     end
   end
 
@@ -56,7 +56,7 @@ describe Board do
     it "returns array of available spaces" do
       grid = ["X", "O", 2, 3, "X", 5, "O", 7, "X"]
       board = Board.new(grid)
-      expect(board.available_spaces(grid, "O", "X")).to eql([2, 3, 5, 7])
+      expect(board.available_spaces("O", "X")).to eql([2, 3, 5, 7])
     end
   end
 end
