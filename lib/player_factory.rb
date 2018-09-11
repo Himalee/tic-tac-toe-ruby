@@ -27,6 +27,8 @@ class PlayerFactory
     HardComputerPlayer.new(@display, choose_mark("Computer Player"))
   end
 
+  private
+
   def choose_mark(player_type)
     @display.choose_mark_prompt(player_type)
     @display.get_mark(player_type)

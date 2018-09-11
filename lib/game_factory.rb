@@ -13,8 +13,11 @@ class GameFactory
   def create_game
     players = set_players
     board = Board.new([0, 1, 2, 3, 4, 5, 6, 7, 8])
-    Game.new(board, @display, players)
+    board_presenter = BoardPresenter.new
+    Game.new(board, @display, players, board_presenter)
   end
+
+  private
 
   def set_players
     players = get_players
@@ -25,8 +28,6 @@ class GameFactory
     end
     players
   end
-
-  private
 
   def get_players
     game_mode_choice = @game_mode.choose_game_mode(@display)

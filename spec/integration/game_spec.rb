@@ -17,7 +17,8 @@ describe Game do
       human_player_one = HumanPlayer.new(display, "X")
       human_player_two = HumanPlayer.new(display, "O")
       players = [human_player_one, human_player_two]
-      game = Game.new(board, display, players)
+      board_presenter = BoardPresenter.new(console)
+      game = Game.new(board, display, players, board_presenter)
       game.start_game
     end
 
@@ -40,7 +41,8 @@ describe Game do
       hard_computer_player_one = HardComputerPlayer.new(display, "X")
       hard_computer_player_two = HardComputerPlayer.new(display, "O")
       players = [hard_computer_player_one, hard_computer_player_two]
-      game = Game.new(board, display, players)
+      board_presenter = BoardPresenter.new(console)
+      game = Game.new(board, display, players, board_presenter)
       game.start_game
       expect(output.string).to include("draw")
     end

@@ -1,7 +1,6 @@
 require "player"
 require "hard_computer_player"
 
-
 describe HardComputerPlayer do
   it "returns name" do
     hard_computer_player = HardComputerPlayer.new("", "")

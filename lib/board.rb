@@ -1,21 +1,25 @@
 class Board
 
-  attr_reader :grid
+  FIRST_ELEMENT = 0
+  ONE_LEVEL = 1
+
+  attr_reader :grid, :max_number_of_cells, :size
 
   def initialize(grid)
     @grid = grid
+    @size = 3
   end
 
-  def end_of_game?(grid, player_one_mark, player_two_mark)
-    tie?(grid, player_one_mark, player_two_mark) || win?(grid)
+  def end_of_game?(player_one_mark, player_two_mark)
+    tie?(player_one_mark, player_two_mark) || win?
   end
 
-  def tie?(grid, player_one_mark, player_two_mark)
-    grid.all? { |cell| cell == player_one_mark || cell == player_two_mark }
+  def tie?(player_one_mark, player_two_mark)
+    @grid.all? { |cell| cell == player_one_mark || cell == player_two_mark }
   end
 
-  def win?(grid)
-    all_winning_combinations(grid).any? {|line| line.uniq.length == 1}
+  def win?
+    all_winning_combinations.any? {|line| line.uniq.length == 1}
   end
 
   def mark_grid(grid, cell, mark)
@@ -29,9 +33,9 @@ class Board
     Board.new(new_grid)
   end
 
-  def available_spaces(grid, player_one_mark, player_two_mark)
+  def available_spaces(player_one_mark, player_two_mark)
     available_spaces = []
-    grid.each do |cell|
+    @grid.each do |cell|
       if cell != player_one_mark && cell != player_two_mark
         available_spaces << cell
       end
@@ -39,16 +43,35 @@ class Board
     available_spaces
   end
 
+  def max_number_of_cells
+    @size**2
+  end
+
   private
 
-  def all_winning_combinations(grid)
-    [[grid[0], grid[1], grid[2]],
-    [grid[3], grid[4], grid[5]],
-    [grid[6], grid[7], grid[8]],
-    [grid[0], grid[3], grid[6]],
-    [grid[1], grid[4], grid[7]],
-    [grid[2], grid[5], grid[8]],
-    [grid[0], grid[4], grid[8]],
-    [grid[2], grid[4], grid[6]]]
+  def all_winning_combinations
+    [winning_rows, winning_columns, winning_diagonals].flatten(ONE_LEVEL)
+  end
+
+  def winning_columns
+    winning_rows.transpose
+  end
+
+  def winning_rows
+    @grid.each_slice(@size).to_a
+  end
+
+  def winning_diagonals
+    [diagonal_line(FIRST_ELEMENT, @size + 1), diagonal_line(@size - 1, @size - 1)]
+  end
+
+  def diagonal_line(first_index, increase_index_by)
+    diagonal = []
+    index = first_index
+    until diagonal.count == @size
+      diagonal << @grid[index]
+      index += increase_index_by
+    end
+    diagonal
   end
 end

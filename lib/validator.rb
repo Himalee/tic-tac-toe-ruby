@@ -5,7 +5,7 @@ class Validator
   VALID_SET_PLAYERS_MODES = [1, 2]
 
   def available_cell?(board, choice, player_one_mark, player_two_mark)
-    board.available_spaces(board.grid, player_one_mark, player_two_mark).include?(choice)
+    board.available_spaces(player_one_mark, player_two_mark).include?(choice)
   end
 
   def valid_cell?(input)
