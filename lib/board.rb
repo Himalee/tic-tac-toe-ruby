@@ -1,5 +1,8 @@
 class Board
 
+  FIRST_ELEMENT = 0
+  ONE_LEVEL = 1
+
   attr_reader :grid, :max_number_of_cells, :size
 
   def initialize(grid)
@@ -47,13 +50,28 @@ class Board
   private
 
   def all_winning_combinations
-    [[@grid[0], @grid[1], @grid[2]],
-    [@grid[3], @grid[4], @grid[5]],
-    [@grid[6], @grid[7], @grid[8]],
-    [@grid[0], @grid[3], @grid[6]],
-    [@grid[1], @grid[4], @grid[7]],
-    [@grid[2], @grid[5], @grid[8]],
-    [@grid[0], @grid[4], @grid[8]],
-    [@grid[2], @grid[4], @grid[6]]]
+    [winning_rows, winning_columns, winning_diagonals].flatten(ONE_LEVEL)
+  end
+
+  def winning_columns
+    winning_rows.transpose
+  end
+
+  def winning_rows
+    @grid.each_slice(@size).to_a
+  end
+
+  def winning_diagonals
+    [diagonal_line(FIRST_ELEMENT, @size + 1), diagonal_line(@size - 1, @size - 1)]
+  end
+
+  def diagonal_line(first_index, increase_index_by)
+    diagonal = []
+    index = first_index
+    until diagonal.count == @size
+      diagonal << @grid[index]
+      index += increase_index_by
+    end
+    diagonal
   end
 end
