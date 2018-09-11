@@ -3,10 +3,11 @@ class Game
   FIRST_ELEMENT = 0
   SECOND_ELEMENT = 1
 
-  def initialize(board, display, players)
+  def initialize(board, display, players, board_presenter)
     @board = board
     @display = display
     @players = players
+    @board_presenter = board_presenter
   end
 
   def start_game
@@ -19,7 +20,7 @@ class Game
   private
 
   def display_board
-    @display.present_board(@board)
+    @board_presenter.present_board(@board)
   end
 
   def player_turns

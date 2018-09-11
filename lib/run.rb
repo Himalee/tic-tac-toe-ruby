@@ -11,6 +11,7 @@ require_relative "negamax"
 require_relative "game_factory"
 require_relative "player_factory"
 require_relative "game_mode"
+require_relative "board_presenter"
 
 
 validator = Validator.new

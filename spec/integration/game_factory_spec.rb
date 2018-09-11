@@ -2,8 +2,6 @@ require "game_factory"
 
 describe GameFactory do
 
-  FIRST_ELEMENT = 0
-
   context "creates a Game" do
     before :each do
       output = StringIO.new
@@ -18,11 +16,6 @@ describe GameFactory do
 
     it "returns a Game" do
       expect(@game_factory.create_game).to be_a(Game)
-    end
-
-    it "sets first player mark as 'X'" do
-      first_player = @game_factory.set_players[FIRST_ELEMENT]
-      expect(first_player.mark).to eql("X")
     end
   end
 end
